@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Health Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f8f5;
+      color: #333;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      color: #2e8b57;
+      text-align: center;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #2e8b57;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #246b45;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #1c5c3c;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    a {
+      color: #2e8b57;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Healthy Habits Quiz</h1>
+
+  <form id="quizForm">
+    <div class="question">
+      <label>1. How often do you cook your own meals?</label><br>
+      <input type="radio" name="q1" value="healthy"> Most days<br>
+      <input type="radio" name="q1" value="neutral"> Sometimes<br>
+      <input type="radio" name="q1" value="unhealthy"> Rarely<br>
+    </div>
+
+    <div class="question">
+      <label>2. How many servings of fruits/vegetables do you eat daily?</label><br>
+      <input type="radio" name="q2" value="healthy"> 5 or more<br>
+      <input type="radio" name="q2" value="neutral"> 2-4<br>
+      <input type="radio" name="q2" value="unhealthy"> 0-1<br>
+    </div>
+
+    <div class="question">
+      <label>3. How often do you drink soda or sugary drinks?</label><br>
+      <input type="radio" name="q3" value="healthy"> Rarely<br>
+      <input type="radio" name="q3" value="neutral"> A few times a week<br>
+      <input type="radio" name="q3" value="unhealthy"> Daily<br>
+    </div>
+
+    <button type="button" onclick="calculateResult()">Get My Result</button>
+  </form>
+
+  <div id="result"></div>
+
+  <footer>
+    <p><a href="scratch.html">← Back to Scratch Page</a></p>
+  </footer>
+
+  <script>
+    function calculateResult() {
+      const answers = ['q1', 'q2', 'q3'];
+      let score = 0;
+
+      for (let q of answers) {
+        const selected = document.querySelector('input[name="' + q + '"]:checked');
+        if (selected) {
+          if (selected.value === "healthy") score += 2;
+          else if (selected.value === "neutral") score += 1;
+        }
+      }
+
+      let resultText = "";
+      if (score >= 5) {
+        resultText = "You're a Health Hero! 🥦";
+      } else if (score >= 3) {
+        resultText = "You're on your way! 🍎";
+      } else {
+        resultText = "Time for a reset — start small and go natural 🌱";
+      }
+
+      document.getElementById("result").textContent = resultText;
+    }
+  </script>
+
+</body>
+</html>
